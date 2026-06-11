@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tabela de Bolso Copa 2026</title>
+  <meta name="theme-color" content="#0c7a55">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Tabela Copa 2026">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1a2233;
+      --muted: #657184;
+      --line: #b9c2cf;
+      --paper: #fffdf5;
+      --soft: #eef2f7;
+      --green: #0c7a55;
+      --gold: #d9a51c;
+      --red: #c93d3d;
+      --blue: #2364aa;
+      --cyan: #168aad;
+      --purple: #7b2cbf;
+      --pink: #c9184a;
+      --orange: #e76f51;
+      --field: #f6fbf7;
+      --accent: var(--green);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(135deg, rgba(12, 122, 85, 0.16), transparent 28rem),
+        linear-gradient(225deg, rgba(217, 165, 28, 0.18), transparent 26rem),
+        #e7ebf0;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+    }
+
+    button, input { font: inherit; }
+    button { border: 0; cursor: pointer; }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      border-bottom: 1px solid #cfd7e2;
+      background: rgba(248, 250, 252, 0.94);
+      backdrop-filter: blur(8px);
+    }
+
+    .toolbar button,
+    .toolbar a {
+      display: inline-flex;
+      min-height: 36px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--green);
+      color: #fff;
+      padding: 0 12px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .toolbar button.secondary { background: #2c3a55; }
+    .toolbar button.warning { background: #8a4a09; }
+    .toolbar a { background: #ffffff; color: var(--ink); border: 1px solid #cfd7e2; }
+
+    .sheet {
+      width: min(1240px, calc(100% - 20px));
+      margin: 14px auto 28px;
+      padding: 16px;
+      background: var(--paper);
+      border: 1px solid rgba(26, 34, 51, 0.12);
+      border-radius: 8px;
+      box-shadow: 0 18px 45px rgba(26, 34, 51, 0.18);
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: end;
+      margin: -16px -16px 0;
+      padding: 18px 16px 14px;
+      border-bottom: 3px solid var(--green);
+      background:
+        linear-gradient(90deg, rgba(12, 122, 85, 0.14), rgba(217, 165, 28, 0.16)),
+        #ffffff;
+      border-radius: 8px 8px 0 0;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      font-size: clamp(1.9rem, 5vw, 3.4rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+
+    .stamp {
+      display: grid;
+      min-width: 116px;
+      min-height: 76px;
+      place-items: center;
+      border: 3px solid var(--green);
+      background:
+        linear-gradient(135deg, transparent 45%, rgba(12, 122, 85, 0.18) 46% 54%, transparent 55%),
+        #fff;
+      color: var(--green);
+      font-size: 1.45rem;
+      font-weight: 900;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 18px 0 8px;
+      padding: 8px 10px;
+      border-left: 6px solid var(--accent);
+      background: #ffffff;
+      box-shadow: inset 0 -1px 0 var(--line);
+      text-transform: uppercase;
+    }
+
+    .section-title h2 { font-size: 1.05rem; }
+    .section-title span {
+      color: var(--muted);
+      font-size: 0.76rem;
+      text-transform: none;
+    }
+
+    .groups {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .group, .stage-card {
+      break-inside: avoid;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(26, 34, 51, 0.08);
+    }
+
+    .group-title, .stage-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      padding: 6px 8px;
+      background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 72%, #111827));
+      color: #fff;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .group-title span, .stage-title span {
+      color: #f3cd4d;
+      font-size: 0.72rem;
+      white-space: nowrap;
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 3px 4px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      background: color-mix(in srgb, var(--accent) 12%, var(--soft));
+      color: #2d374d;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+    }
+
+    td.team {
+      width: 38%;
+      text-align: left;
+      font-weight: 800;
+    }
+
+    .qualified { background: #e9f7ef; }
+    .maybe { background: #fff6d7; }
+    .pos { color: var(--muted); font-weight: 800; }
+    .note { color: var(--muted); font-size: 0.72rem; }
+
+    .fixture-list, .knockout-list { padding: 6px 7px 8px; }
+
+    .fixture, .ko-match {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr) 34px 18px 34px;
+      gap: 4px;
+      align-items: center;
+      min-height: 28px;
+      border-top: 1px dashed #cbd3df;
+      padding: 5px 4px;
+      background: #ffffff;
+    }
+
+    .fixture:first-child, .ko-match:first-child { border-top: 0; }
+    .fixture:nth-child(even), .ko-match:nth-child(even) { background: color-mix(in srgb, var(--accent) 5%, #ffffff); }
+
+    .meta {
+      color: color-mix(in srgb, var(--accent) 82%, #111827);
+      font-size: 0.66rem;
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    .team-name {
+      overflow: hidden;
+      font-weight: 800;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .vs {
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .score {
+      width: 100%;
+      height: 24px;
+      border: 2px solid color-mix(in srgb, var(--accent) 35%, #9faabc);
+      border-radius: 6px;
+      background: var(--field);
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .score:focus {
+      outline: 2px solid rgba(12, 122, 85, 0.22);
+      border-color: var(--green);
+    }
+
+    .thirds {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .third-card {
+      --accent: var(--gold);
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(26, 34, 51, 0.08);
+    }
+
+    .knockout {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .ko-match {
+      grid-template-columns: 56px minmax(0, 1fr) 30px 18px 30px;
+    }
+
+    .placeholder {
+      color: var(--muted);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .winner {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .penalty {
+      display: grid;
+      grid-column: 2 / -1;
+      grid-template-columns: auto 34px 18px 34px minmax(0, 1fr);
+      gap: 4px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.68rem;
+    }
+
+    .penalty input {
+      height: 20px;
+      border: 1px solid #adb7c5;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .group-a { --accent: #0c7a55; }
+    .group-b { --accent: #2364aa; }
+    .group-c { --accent: #d00000; }
+    .group-d { --accent: #7b2cbf; }
+    .group-e { --accent: #e76f51; }
+    .group-f { --accent: #168aad; }
+    .group-g { --accent: #6a994e; }
+    .group-h { --accent: #c9184a; }
+    .group-i { --accent: #bc6c25; }
+    .group-j { --accent: #3a0ca3; }
+    .group-k { --accent: #0081a7; }
+    .group-l { --accent: #5f0f40; }
+    .stage-32 { --accent: #2364aa; }
+    .stage-16 { --accent: #0c7a55; }
+    .stage-quarter { --accent: #e76f51; }
+    .stage-semi { --accent: #7b2cbf; }
+    .stage-third { --accent: #8a4a09; }
+    .stage-final { --accent: #c9184a; }
+
+    .footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 9px;
+      border-top: 2px solid var(--ink);
+      color: var(--muted);
+      font-size: 0.74rem;
+    }
+
+    @media (max-width: 1020px) {
+      .groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .knockout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .thirds { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      body { font-size: 13px; }
+
+      .toolbar {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding: 8px;
+      }
+
+      .toolbar button,
+      .toolbar a {
+        flex: 0 0 auto;
+        min-height: 40px;
+        padding: 0 13px;
+      }
+
+      .sheet {
+        width: calc(100% - 8px);
+        margin-top: 8px;
+        padding: 8px;
+      }
+
+      .header {
+        grid-template-columns: 1fr;
+        margin: -8px -8px 0;
+        padding: 14px 10px 12px;
+      }
+
+      h1 { font-size: 2rem; }
+      .subtitle { font-size: 0.9rem; }
+      .stamp { min-height: 54px; }
+
+      .section-title {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+        margin-top: 14px;
+      }
+
+      .groups, .knockout { grid-template-columns: 1fr; }
+
+      .group-title,
+      .stage-title {
+        padding: 9px 10px;
+        font-size: 1rem;
+      }
+
+      th, td { padding: 5px 3px; }
+      td.team { width: 34%; }
+
+      .fixture,
+      .ko-match {
+        grid-template-columns: 58px minmax(0, 1fr) 42px 14px 42px;
+        gap: 5px;
+        min-height: 62px;
+        padding: 8px 6px;
+      }
+
+      .meta { font-size: 0.72rem; }
+      .team-name { font-size: 0.94rem; }
+      .note { font-size: 0.68rem; }
+      .score { height: 38px; font-size: 1rem; }
+
+      .penalty {
+        grid-column: 1 / -1;
+        grid-template-columns: minmax(0, 1fr) 42px 14px 42px;
+        padding-left: 58px;
+      }
+
+      .penalty input { height: 32px; border-radius: 6px; }
+    }
+
+    @page { size: A4 portrait; margin: 7mm; }
+
+    @media print {
+      body { background: #fff; font-size: 8px; }
+      .toolbar { display: none; }
+      .sheet { width: 100%; margin: 0; padding: 0; box-shadow: none; }
+      .header { padding-bottom: 6px; }
+      h1 { font-size: 23px; }
+      .subtitle { font-size: 8px; }
+      .stamp { min-width: 78px; min-height: 44px; font-size: 12px; }
+      .section-title { margin: 9px 0 5px; }
+      .groups { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; }
+      .knockout { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; }
+      .thirds { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
+      .group, .stage-card, .third-card { border-width: 1px; }
+      .group-title, .stage-title { padding: 3px 4px; font-size: 8px; }
+      .group-title span, .stage-title span, th, .meta, .note, .footer { font-size: 6px; }
+      th, td { padding: 1px 2px; }
+      .fixture-list, .knockout-list { padding: 2px 3px 3px; }
+      .fixture, .ko-match {
+        min-height: 17px;
+        grid-template-columns: 37px minmax(0, 1fr) 20px 10px 20px;
+        gap: 2px;
+        padding: 1px 0;
+      }
+      .score { height: 14px; font-size: 8px; }
+      .penalty { grid-template-columns: auto 20px 10px 20px minmax(0, 1fr); font-size: 6px; }
+      .penalty input { height: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="toolbar" aria-label="Acoes da tabela">
+    <button type="button" onclick="window.print()">Imprimir</button>
+    <button class="secondary" type="button" id="saveButton">Salvar</button>
+    <button class="warning" type="button" id="clearButton">Limpar resultados</button>
+    <a href="#grupos">Grupos</a>
+    <a href="#terceiros">Terceiros</a>
+    <a href="#finais">Mata-mata</a>
+  </nav>
+
+  <main class="sheet">
+    <header class="header">
+      <div>
+        <h1>Tabela de Bolso</h1>
+        <p class="subtitle">Copa do Mundo 2026 · grupos, melhores terceiros e mata-mata preenchidos automaticamente conforme os placares digitados.</p>
+      </div>
+      <div class="stamp" aria-hidden="true">Copa<br>2026</div>
+    </header>
+
+    <section class="section-title" id="grupos">
+      <h2>Fase de grupos</h2>
+      <span>Horários em Brasília</span>
+    </section>
+    <section id="groups" class="groups" aria-label="Grupos"></section>
+
+    <section class="section-title" id="terceiros">
+      <h2>Melhores terceiros</h2>
+      <span>Os 8 melhores avancam para os jogos permitidos pela chave oficial</span>
+    </section>
+    <section class="thirds">
+      <div class="third-card">
+        <div class="stage-title">Ranking dos terceiros<span>automatico</span></div>
+        <div id="thirdTable"></div>
+      </div>
+      <div class="third-card">
+        <div class="stage-title">Classificados ao mata-mata<span>32 selecoes</span></div>
+        <div id="qualifiedTable"></div>
+      </div>
+    </section>
+
+    <section class="section-title" id="finais">
+      <h2>Fases finais</h2>
+      <span>Em empate no mata-mata, preencha tambem os penaltis</span>
+    </section>
+    <section id="knockout" class="knockout" aria-label="Mata-mata"></section>
+
+    <footer class="footer">
+      <span>Grupo: 3 pontos por vitoria, 1 por empate. Desempate aplicado: pontos, saldo, gols pro e ordem da tabela.</span>
+      <span>Fonte de tabela e chave: FIFA. Horários convertidos para Brasília.</span>
+    </footer>
+  </main>
+
+  <script>
+    const STORAGE_KEY = "tabela-de-bolso-copa-2026-v2";
+    const groupOrder = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
+    const teamNamesPtBr = {
+      "Algeria": "Argélia",
+      "Argentina": "Argentina",
+      "Australia": "Austrália",
+      "Austria": "Áustria",
+      "Belgium": "Bélgica",
+      "Bosnia and Herzegovina": "Bósnia e Herzegovina",
+      "Brazil": "Brasil",
+      "Cabo Verde": "Cabo Verde",
+      "Canada": "Canadá",
+      "Colombia": "Colômbia",
+      "Congo DR": "RD Congo",
+      "Cote d'Ivoire": "Costa do Marfim",
+      "Côte d'Ivoire": "Costa do Marfim",
+      "Curacao": "Curaçao",
+      "Curaçao": "Curaçao",
+      "Czechia": "Tchéquia",
+      "Ecuador": "Equador",
+      "Egypt": "Egito",
+      "England": "Inglaterra",
+      "France": "França",
+      "Germany": "Alemanha",
+      "Ghana": "Gana",
+      "Haiti": "Haiti",
+      "IR Iran": "Irã",
+      "Iraq": "Iraque",
+      "Japan": "Japão",
+      "Jordan": "Jordânia",
+      "Korea Republic": "Coreia do Sul",
+      "Mexico": "México",
+      "Morocco": "Marrocos",
+      "Netherlands": "Países Baixos",
+      "New Zealand": "Nova Zelândia",
+      "Norway": "Noruega",
+      "Panama": "Panamá",
+      "Paraguay": "Paraguai",
+      "Portugal": "Portugal",
+      "Qatar": "Catar",
+      "Saudi Arabia": "Arábia Saudita",
+      "Scotland": "Escócia",
+      "Senegal": "Senegal",
+      "South Africa": "África do Sul",
+      "Spain": "Espanha",
+      "Sweden": "Suécia",
+      "Switzerland": "Suíça",
+      "Tunisia": "Tunísia",
+      "Türkiye": "Turquia",
+      "Uruguay": "Uruguai",
+      "USA": "Estados Unidos",
+      "Uzbekistan": "Uzbequistão"
+    };
+
+    const matches = [
+      m(1, "2026-06-11", "15:00", "13:00", "A", "Mexico", "South Africa", "Mexico City Stadium"),
+      m(2, "2026-06-11", "22:00", "20:00", "A", "Korea Republic", "Czechia", "Estadio Guadalajara"),
+      m(3, "2026-06-12", "15:00", "15:00", "B", "Canada", "Bosnia and Herzegovina", "Toronto Stadium"),
+      m(4, "2026-06-12", "21:00", "18:00", "D", "USA", "Paraguay", "Los Angeles Stadium"),
+      m(5, "2026-06-13", "21:00", "21:00", "C", "Haiti", "Scotland", "Boston Stadium"),
+      m(6, "2026-06-13", "00:00", "21:00", "D", "Australia", "Türkiye", "BC Place Vancouver"),
+      m(7, "2026-06-13", "18:00", "18:00", "C", "Brazil", "Morocco", "New York New Jersey Stadium"),
+      m(8, "2026-06-13", "15:00", "12:00", "B", "Qatar", "Switzerland", "San Francisco Bay Area Stadium"),
+      m(9, "2026-06-14", "19:00", "19:00", "E", "Cote d'Ivoire", "Ecuador", "Philadelphia Stadium"),
+      m(10, "2026-06-14", "13:00", "12:00", "E", "Germany", "Curacao", "Houston Stadium"),
+      m(11, "2026-06-14", "16:00", "15:00", "F", "Netherlands", "Japan", "Dallas Stadium"),
+      m(12, "2026-06-14", "22:00", "20:00", "F", "Sweden", "Tunisia", "Estadio Monterrey"),
+      m(13, "2026-06-15", "18:00", "18:00", "H", "Saudi Arabia", "Uruguay", "Miami Stadium"),
+      m(14, "2026-06-15", "12:00", "12:00", "H", "Spain", "Cabo Verde", "Atlanta Stadium"),
+      m(15, "2026-06-15", "21:00", "18:00", "G", "IR Iran", "New Zealand", "Los Angeles Stadium"),
+      m(16, "2026-06-15", "15:00", "12:00", "G", "Belgium", "Egypt", "Seattle Stadium"),
+      m(17, "2026-06-16", "15:00", "15:00", "I", "France", "Senegal", "New York New Jersey Stadium"),
+      m(18, "2026-06-16", "18:00", "18:00", "I", "Iraq", "Norway", "Boston Stadium"),
+      m(19, "2026-06-16", "21:00", "20:00", "J", "Argentina", "Algeria", "Kansas City Stadium"),
+      m(20, "2026-06-16", "00:00", "21:00", "J", "Austria", "Jordan", "San Francisco Bay Area Stadium"),
+      m(21, "2026-06-17", "19:00", "19:00", "L", "Ghana", "Panama", "Toronto Stadium"),
+      m(22, "2026-06-17", "16:00", "15:00", "L", "England", "Croatia", "Dallas Stadium"),
+      m(23, "2026-06-17", "13:00", "12:00", "K", "Portugal", "Congo DR", "Houston Stadium"),
+      m(24, "2026-06-17", "22:00", "20:00", "K", "Uzbekistan", "Colombia", "Mexico City Stadium"),
+      m(25, "2026-06-18", "12:00", "12:00", "A", "Czechia", "South Africa", "Atlanta Stadium"),
+      m(26, "2026-06-18", "15:00", "12:00", "B", "Switzerland", "Bosnia and Herzegovina", "Los Angeles Stadium"),
+      m(27, "2026-06-18", "18:00", "15:00", "B", "Canada", "Qatar", "BC Place Vancouver"),
+      m(28, "2026-06-18", "21:00", "19:00", "A", "Mexico", "Korea Republic", "Estadio Guadalajara"),
+      m(29, "2026-06-19", "21:00", "21:00", "C", "Brazil", "Haiti", "Philadelphia Stadium"),
+      m(30, "2026-06-19", "18:00", "18:00", "C", "Scotland", "Morocco", "Boston Stadium"),
+      m(31, "2026-06-19", "23:00", "20:00", "D", "Türkiye", "Paraguay", "San Francisco Bay Area Stadium"),
+      m(32, "2026-06-19", "15:00", "12:00", "D", "USA", "Australia", "Seattle Stadium"),
+      m(33, "2026-06-20", "16:00", "16:00", "E", "Germany", "Cote d'Ivoire", "Toronto Stadium"),
+      m(34, "2026-06-20", "20:00", "19:00", "E", "Ecuador", "Curacao", "Kansas City Stadium"),
+      m(35, "2026-06-20", "13:00", "12:00", "F", "Netherlands", "Sweden", "Houston Stadium"),
+      m(36, "2026-06-20", "00:00", "22:00", "F", "Tunisia", "Japan", "Estadio Monterrey"),
+      m(37, "2026-06-21", "18:00", "18:00", "H", "Uruguay", "Cabo Verde", "Miami Stadium"),
+      m(38, "2026-06-21", "12:00", "12:00", "H", "Spain", "Saudi Arabia", "Atlanta Stadium"),
+      m(39, "2026-06-21", "15:00", "12:00", "G", "Belgium", "IR Iran", "Los Angeles Stadium"),
+      m(40, "2026-06-21", "21:00", "18:00", "G", "New Zealand", "Egypt", "BC Place Vancouver"),
+      m(41, "2026-06-22", "20:00", "20:00", "I", "Norway", "Senegal", "New York New Jersey Stadium"),
+      m(42, "2026-06-22", "17:00", "17:00", "I", "France", "Iraq", "Philadelphia Stadium"),
+      m(43, "2026-06-22", "13:00", "12:00", "J", "Argentina", "Austria", "Dallas Stadium"),
+      m(44, "2026-06-22", "23:00", "20:00", "J", "Jordan", "Algeria", "San Francisco Bay Area Stadium"),
+      m(45, "2026-06-23", "16:00", "16:00", "L", "England", "Ghana", "Boston Stadium"),
+      m(46, "2026-06-23", "19:00", "19:00", "L", "Panama", "Croatia", "Toronto Stadium"),
+      m(47, "2026-06-23", "13:00", "12:00", "K", "Portugal", "Uzbekistan", "Houston Stadium"),
+      m(48, "2026-06-23", "22:00", "20:00", "K", "Colombia", "Congo DR", "Estadio Guadalajara"),
+      m(49, "2026-06-24", "18:00", "18:00", "C", "Scotland", "Brazil", "Miami Stadium"),
+      m(50, "2026-06-24", "18:00", "18:00", "C", "Morocco", "Haiti", "Atlanta Stadium"),
+      m(51, "2026-06-24", "15:00", "12:00", "B", "Switzerland", "Canada", "BC Place Vancouver"),
+      m(52, "2026-06-24", "15:00", "12:00", "B", "Bosnia and Herzegovina", "Qatar", "Seattle Stadium"),
+      m(53, "2026-06-24", "21:00", "19:00", "A", "Czechia", "Mexico", "Mexico City Stadium"),
+      m(54, "2026-06-24", "21:00", "19:00", "A", "South Africa", "Korea Republic", "Estadio Monterrey"),
+      m(55, "2026-06-25", "16:00", "16:00", "E", "Curacao", "Cote d'Ivoire", "Philadelphia Stadium"),
+      m(56, "2026-06-25", "16:00", "16:00", "E", "Ecuador", "Germany", "New York New Jersey Stadium"),
+      m(57, "2026-06-25", "19:00", "18:00", "F", "Japan", "Sweden", "Dallas Stadium"),
+      m(58, "2026-06-25", "19:00", "18:00", "F", "Tunisia", "Netherlands", "Kansas City Stadium"),
+      m(59, "2026-06-25", "22:00", "19:00", "D", "Türkiye", "USA", "Los Angeles Stadium"),
+      m(60, "2026-06-25", "22:00", "19:00", "D", "Paraguay", "Australia", "San Francisco Bay Area Stadium"),
+      m(61, "2026-06-26", "15:00", "15:00", "I", "Norway", "France", "Boston Stadium"),
+      m(62, "2026-06-26", "15:00", "15:00", "I", "Senegal", "Iraq", "Toronto Stadium"),
+      m(63, "2026-06-26", "23:00", "20:00", "G", "Egypt", "IR Iran", "Seattle Stadium"),
+      m(64, "2026-06-26", "23:00", "20:00", "G", "New Zealand", "Belgium", "BC Place Vancouver"),
+      m(65, "2026-06-26", "20:00", "19:00", "H", "Cabo Verde", "Saudi Arabia", "Houston Stadium"),
+      m(66, "2026-06-26", "20:00", "18:00", "H", "Uruguay", "Spain", "Estadio Guadalajara"),
+      m(67, "2026-06-27", "17:00", "17:00", "L", "Panama", "England", "New York New Jersey Stadium"),
+      m(68, "2026-06-27", "17:00", "17:00", "L", "Croatia", "Ghana", "Philadelphia Stadium"),
+      m(69, "2026-06-27", "22:00", "21:00", "J", "Algeria", "Austria", "Kansas City Stadium"),
+      m(70, "2026-06-27", "22:00", "21:00", "J", "Jordan", "Argentina", "Dallas Stadium"),
+      m(71, "2026-06-27", "19:30", "19:30", "K", "Colombia", "Portugal", "Miami Stadium"),
+      m(72, "2026-06-27", "19:30", "19:30", "K", "Congo DR", "Uzbekistan", "Atlanta Stadium"),
+      ko(73, "2026-06-28", "15:00", "12:00", "Round of 32", "Los Angeles Stadium", ["2A", "2B"]),
+      ko(74, "2026-06-29", "16:30", "16:30", "Round of 32", "Boston Stadium", ["1E", "3A/B/C/D/F"]),
+      ko(75, "2026-06-29", "21:00", "19:00", "Round of 32", "Estadio Monterrey", ["1F", "2C"]),
+      ko(76, "2026-06-29", "13:00", "12:00", "Round of 32", "Houston Stadium", ["1C", "2F"]),
+      ko(77, "2026-06-30", "17:00", "17:00", "Round of 32", "New York New Jersey Stadium", ["1I", "3C/D/F/G/H"]),
+      ko(78, "2026-06-30", "13:00", "12:00", "Round of 32", "Dallas Stadium", ["2E", "2I"]),
+      ko(79, "2026-06-30", "21:00", "19:00", "Round of 32", "Mexico City Stadium", ["1A", "3C/E/F/H/I"]),
+      ko(80, "2026-07-01", "12:00", "12:00", "Round of 32", "Atlanta Stadium", ["1L", "3E/H/I/J/K"]),
+      ko(81, "2026-07-01", "20:00", "17:00", "Round of 32", "San Francisco Bay Area Stadium", ["1D", "3B/E/F/I/J"]),
+      ko(82, "2026-07-01", "16:00", "13:00", "Round of 32", "Seattle Stadium", ["1G", "3A/E/H/I/J"]),
+      ko(83, "2026-07-02", "19:00", "19:00", "Round of 32", "Toronto Stadium", ["2K", "2L"]),
+      ko(84, "2026-07-02", "15:00", "12:00", "Round of 32", "Los Angeles Stadium", ["1H", "2J"]),
+      ko(85, "2026-07-02", "23:00", "20:00", "Round of 32", "BC Place Vancouver", ["1B", "3E/F/G/I/J"]),
+      ko(86, "2026-07-03", "18:00", "18:00", "Round of 32", "Miami Stadium", ["1J", "2H"]),
+      ko(87, "2026-07-03", "21:30", "20:30", "Round of 32", "Kansas City Stadium", ["1K", "3D/E/I/J/L"]),
+      ko(88, "2026-07-03", "14:00", "13:00", "Round of 32", "Dallas Stadium", ["2D", "2G"]),
+      ko(89, "2026-07-04", "17:00", "17:00", "Round of 16", "Philadelphia Stadium", ["W74", "W77"]),
+      ko(90, "2026-07-04", "13:00", "12:00", "Round of 16", "Houston Stadium", ["W73", "W75"]),
+      ko(91, "2026-07-05", "16:00", "16:00", "Round of 16", "New York New Jersey Stadium", ["W76", "W78"]),
+      ko(92, "2026-07-05", "20:00", "18:00", "Round of 16", "Mexico City Stadium", ["W79", "W80"]),
+      ko(93, "2026-07-06", "15:00", "14:00", "Round of 16", "Dallas Stadium", ["W83", "W84"]),
+      ko(94, "2026-07-06", "20:00", "17:00", "Round of 16", "Seattle Stadium", ["W81", "W82"]),
+      ko(95, "2026-07-07", "12:00", "12:00", "Round of 16", "Atlanta Stadium", ["W86", "W88"]),
+      ko(96, "2026-07-07", "16:00", "13:00", "Round of 16", "BC Place Vancouver", ["W85", "W87"]),
+      ko(97, "2026-07-09", "16:00", "16:00", "Quarter-final", "Boston Stadium", ["W89", "W90"]),
+      ko(98, "2026-07-10", "15:00", "12:00", "Quarter-final", "Los Angeles Stadium", ["W93", "W94"]),
+      ko(99, "2026-07-11", "17:00", "17:00", "Quarter-final", "Miami Stadium", ["W91", "W92"]),
+      ko(100, "2026-07-11", "21:00", "20:00", "Quarter-final", "Kansas City Stadium", ["W95", "W96"]),
+      ko(101, "2026-07-14", "15:00", "14:00", "Semi-final", "Dallas Stadium", ["W97", "W98"]),
+      ko(102, "2026-07-15", "15:00", "15:00", "Semi-final", "Atlanta Stadium", ["W99", "W100"]),
+      ko(103, "2026-07-18", "17:00", "17:00", "Third Place", "Miami Stadium", ["L101", "L102"]),
+      ko(104, "2026-07-19", "15:00", "15:00", "Final", "New York New Jersey Stadium", ["W101", "W102"])
+    ];
+
+    const state = loadState();
+    const groupMatches = matches.filter((match) => match.number <= 72);
+    const knockoutMatches = matches.filter((match) => match.number >= 73);
+    let renderTimer = null;
+
+    render();
+
+    document.querySelector("#saveButton").addEventListener("click", () => {
+      persist();
+      alert("Tabela salva neste navegador.");
+    });
+
+    document.querySelector("#clearButton").addEventListener("click", () => {
+      if (!confirm("Limpar todos os placares preenchidos?")) return;
+      state.scores = {};
+      persist();
+      render();
+    });
+
+    function m(number, date, et, local, group, home, away, venue) {
+      return { number, date, et, local, brt: plusHour(et), group, home, away, venue, stage: "Group" };
+    }
+
+    function ko(number, date, et, local, stage, venue, slots) {
+      return { number, date, et, local, brt: plusHour(et), stage, venue, slots };
+    }
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+        return { scores: saved.scores || {} };
+      } catch {
+        return { scores: {} };
+      }
+    }
+
+    function persist() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function render() {
+      const tables = calculateGroups();
+      const resolved = resolveKnockout(tables);
+      renderGroups(tables);
+      renderThirds(tables);
+      renderQualified(tables);
+      renderKnockout(resolved);
+      attachScoreEvents();
+    }
+
+    function calculateGroups() {
+      const tables = {};
+
+      for (const group of groupOrder) {
+        const groupTeams = [...new Set(groupMatches.filter((match) => match.group === group).flatMap((match) => [match.home, match.away]))];
+        tables[group] = groupTeams.map((team, index) => ({
+          team, group, order: index, played: 0, wins: 0, draws: 0, losses: 0, gf: 0, ga: 0, gd: 0, points: 0
+        }));
+      }
+
+      for (const match of groupMatches) {
+        const score = getScore(match.number);
+        if (!isComplete(score)) continue;
+
+        const home = tables[match.group].find((row) => row.team === match.home);
+        const away = tables[match.group].find((row) => row.team === match.away);
+        home.played += 1;
+        away.played += 1;
+        home.gf += score.home;
+        home.ga += score.away;
+        away.gf += score.away;
+        away.ga += score.home;
+
+        if (score.home > score.away) {
+          home.wins += 1; home.points += 3; away.losses += 1;
+        } else if (score.home < score.away) {
+          away.wins += 1; away.points += 3; home.losses += 1;
+        } else {
+          home.draws += 1; away.draws += 1; home.points += 1; away.points += 1;
+        }
+      }
+
+      for (const group of groupOrder) {
+        tables[group].forEach((row) => { row.gd = row.gf - row.ga; });
+        tables[group].sort(compareRows);
+      }
+
+      return tables;
+    }
+
+    function compareRows(a, b) {
+      return b.points - a.points ||
+        b.gd - a.gd ||
+        b.gf - a.gf ||
+        a.order - b.order ||
+        a.team.localeCompare(b.team, "pt-BR");
+    }
+
+    function renderGroups(tables) {
+      document.querySelector("#groups").innerHTML = groupOrder.map((group) => {
+        const fixtures = groupMatches.filter((match) => match.group === group);
+        return `
+          <article class="group group-${group.toLowerCase()}">
+            <div class="group-title">Grupo ${group}<span>4 selecoes</span></div>
+            <table aria-label="Classificacao do grupo ${group}">
+              <thead>
+                <tr><th>#</th><th>Selecao</th><th>Pts</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th></tr>
+              </thead>
+              <tbody>
+                ${tables[group].map((row, index) => `
+                  <tr class="${index < 2 ? "qualified" : index === 2 ? "maybe" : ""}">
+                    <td class="pos">${index + 1}</td>
+                    <td class="team">${teamLabel(row.team)}</td>
+                    <td>${row.points}</td><td>${row.played}</td><td>${row.wins}</td><td>${row.draws}</td>
+                    <td>${row.losses}</td><td>${row.gf}</td><td>${row.ga}</td><td>${row.gd}</td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+            <div class="fixture-list">
+              ${fixtures.map(renderGroupMatch).join("")}
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderGroupMatch(match) {
+      const score = getScore(match.number);
+      return `
+        <div class="fixture">
+          <div class="meta">J${match.number}<br>${formatDate(match.date)} ${match.brt}</div>
+          <div>
+            <div class="team-name">${teamLabel(match.home)}</div>
+            <div class="team-name">${teamLabel(match.away)}</div>
+            <div class="note">${escapeHtml(match.venue)} · Brasília</div>
+          </div>
+          <input class="score" type="number" min="0" max="30" value="${value(score.home)}" data-score="${match.number}" data-side="home" aria-label="Gols ${teamLabelText(match.home)} jogo ${match.number}">
+          <div class="vs">x</div>
+          <input class="score" type="number" min="0" max="30" value="${value(score.away)}" data-score="${match.number}" data-side="away" aria-label="Gols ${teamLabelText(match.away)} jogo ${match.number}">
+        </div>
+      `;
+    }
+
+    function renderThirds(tables) {
+      const thirds = thirdRows(tables);
+      document.querySelector("#thirdTable").innerHTML = `
+        <table aria-label="Melhores terceiros">
+          <thead><tr><th>#</th><th>Grupo</th><th>Selecao</th><th>Pts</th><th>SG</th><th>GP</th></tr></thead>
+          <tbody>
+            ${thirds.map((row, index) => `
+              <tr class="${index < 8 ? "qualified" : ""}">
+                <td>${index + 1}</td><td>${row.group}</td><td class="team">${teamLabel(row.team)}</td>
+                <td>${row.points}</td><td>${row.gd}</td><td>${row.gf}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function renderQualified(tables) {
+      const rows = [];
+      groupOrder.forEach((group) => {
+        rows.push({ label: `1${group}`, team: tables[group][0]?.team || "" });
+        rows.push({ label: `2${group}`, team: tables[group][1]?.team || "" });
+      });
+      thirdRows(tables).slice(0, 8).forEach((row) => rows.push({ label: `3${row.group}`, team: row.team }));
+
+      document.querySelector("#qualifiedTable").innerHTML = `
+        <table aria-label="Classificados">
+          <thead><tr><th>Vaga</th><th>Selecao</th></tr></thead>
+          <tbody>${rows.map((row) => `<tr><td>${row.label}</td><td class="team">${teamLabel(row.team)}</td></tr>`).join("")}</tbody>
+        </table>
+      `;
+    }
+
+    function thirdRows(tables) {
+      return groupOrder.map((group) => ({ ...tables[group][2], group })).sort(compareRows);
+    }
+
+    function resolveKnockout(tables) {
+      const result = {};
+      const usedThirds = new Set();
+
+      for (const match of knockoutMatches) {
+        const home = resolveSlot(match.slots[0], tables, result, usedThirds);
+        const away = resolveSlot(match.slots[1], tables, result, usedThirds);
+        const score = getScore(match.number);
+        const winner = knockoutWinner(home, away, score);
+        const loser = knockoutLoser(home, away, score);
+        result[match.number] = { ...match, home, away, score, winner, loser };
+      }
+
+      return result;
+    }
+
+    function resolveSlot(slot, tables, result, usedThirds) {
+      if (/^[12][A-L]$/.test(slot)) {
+        const position = Number(slot[0]) - 1;
+        if (!isGroupComplete(slot[1])) return slot;
+        return tables[slot[1]][position]?.team || slot;
+      }
+
+      if (/^3[A-L/]+$/.test(slot)) {
+        if (!areAllGroupsComplete()) return slot;
+        const allowed = slot.slice(1).split("/");
+        const pick = thirdRows(tables).find((row) => allowed.includes(row.group) && !usedThirds.has(row.group));
+        if (!pick) return slot;
+        usedThirds.add(pick.group);
+        return pick.team;
+      }
+
+      if (/^W\d+$/.test(slot)) return result[Number(slot.slice(1))]?.winner || slot;
+      if (/^L\d+$/.test(slot)) return result[Number(slot.slice(1))]?.loser || slot;
+      return slot;
+    }
+
+    function isGroupComplete(group) {
+      return groupMatches
+        .filter((match) => match.group === group)
+        .every((match) => isComplete(getScore(match.number)));
+    }
+
+    function areAllGroupsComplete() {
+      return groupMatches.every((match) => isComplete(getScore(match.number)));
+    }
+
+    function knockoutWinner(home, away, score) {
+      if (!home || !away || !isComplete(score)) return "";
+      if (score.home > score.away) return home;
+      if (score.home < score.away) return away;
+      if (isPenComplete(score)) return score.penHome > score.penAway ? home : away;
+      return "";
+    }
+
+    function knockoutLoser(home, away, score) {
+      const winner = knockoutWinner(home, away, score);
+      if (!winner) return "";
+      return winner === home ? away : home;
+    }
+
+    function renderKnockout(resolved) {
+      const stages = [
+        ["Round of 32", "Dieciseisavos"],
+        ["Round of 16", "Oitavas"],
+        ["Quarter-final", "Quartas"],
+        ["Semi-final", "Semifinais"],
+        ["Third Place", "3o lugar"],
+        ["Final", "Final"]
+      ];
+
+      document.querySelector("#knockout").innerHTML = stages.map(([stage, label]) => {
+        const list = Object.values(resolved).filter((match) => match.stage === stage);
+        return `
+          <article class="stage-card ${stageClass(stage)}">
+            <div class="stage-title">${label}<span>${list.length} jogos</span></div>
+            <div class="knockout-list">
+              ${list.map(renderKnockoutMatch).join("")}
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderKnockoutMatch(match) {
+      const score = match.score;
+      const tie = isComplete(score) && score.home === score.away;
+      return `
+        <div class="ko-match">
+          <div class="meta">J${match.number}<br>${formatDate(match.date)} ${match.brt}</div>
+          <div>
+            <div class="team-name ${match.winner === match.home ? "winner" : ""}">${teamOrSlot(match.home)}</div>
+            <div class="team-name ${match.winner === match.away ? "winner" : ""}">${teamOrSlot(match.away)}</div>
+            <div class="note">${escapeHtml(match.venue)} · Brasília</div>
+          </div>
+          <input class="score" type="number" min="0" max="30" value="${value(score.home)}" data-score="${match.number}" data-side="home" aria-label="Gols jogo ${match.number} mandante">
+          <div class="vs">x</div>
+          <input class="score" type="number" min="0" max="30" value="${value(score.away)}" data-score="${match.number}" data-side="away" aria-label="Gols jogo ${match.number} visitante">
+          <div class="penalty" ${tie ? "" : "hidden"}>
+            <span>Penaltis</span>
+            <input type="number" min="0" max="30" value="${value(score.penHome)}" data-score="${match.number}" data-side="penHome" aria-label="Penaltis mandante jogo ${match.number}">
+            <span class="vs">x</span>
+            <input type="number" min="0" max="30" value="${value(score.penAway)}" data-score="${match.number}" data-side="penAway" aria-label="Penaltis visitante jogo ${match.number}">
+            <span class="note">${match.winner ? `Vencedor: ${teamLabel(match.winner)}` : "preencha os penaltis para avancar"}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function stageClass(stage) {
+      return {
+        "Round of 32": "stage-32",
+        "Round of 16": "stage-16",
+        "Quarter-final": "stage-quarter",
+        "Semi-final": "stage-semi",
+        "Third Place": "stage-third",
+        "Final": "stage-final"
+      }[stage] || "";
+    }
+
+    function attachScoreEvents() {
+      document.querySelectorAll("[data-score]").forEach((input) => {
+        input.addEventListener("input", () => {
+          const number = input.dataset.score;
+          const side = input.dataset.side;
+          state.scores[number] ||= {};
+          state.scores[number][side] = input.value === "" ? null : Number(input.value);
+          persist();
+          clearTimeout(renderTimer);
+          renderTimer = setTimeout(render, 300);
+        });
+      });
+    }
+
+    function getScore(number) {
+      return state.scores[number] || {};
+    }
+
+    function isComplete(score) {
+      return Number.isInteger(score.home) && Number.isInteger(score.away);
+    }
+
+    function isPenComplete(score) {
+      return Number.isInteger(score.penHome) && Number.isInteger(score.penAway) && score.penHome !== score.penAway;
+    }
+
+    function value(number) {
+      return Number.isInteger(number) ? number : "";
+    }
+
+    function teamOrSlot(value) {
+      return value && !/^[WL]?\d|^3/.test(value)
+        ? teamLabel(value)
+        : `<span class="placeholder">${escapeHtml(value || "a definir")}</span>`;
+    }
+
+    function teamLabel(team) {
+      return escapeHtml(teamLabelText(team));
+    }
+
+    function teamLabelText(team) {
+      return teamNamesPtBr[team] || team || "";
+    }
+
+    function plusHour(time) {
+      const [h, m] = time.split(":").map(Number);
+      return `${String((h + 1) % 24).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+    }
+
+    function formatDate(value) {
+      const [, month, day] = value.split("-");
+      return `${day}/${month}`;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

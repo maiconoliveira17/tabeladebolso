@@ -1,0 +1,31 @@
+{
+  "name": "Tabela de Bolso Copa 2026",
+  "short_name": "Tabela Copa",
+  "description": "Tabela interativa da Copa do Mundo 2026 com grupos, resultados e mata-mata.",
+  "start_url": "tabela-de-bolso.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fffdf5",
+  "theme_color": "#0c7a55",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
